@@ -30,17 +30,28 @@ FOREIGN KEY(user_team) REFERENCES teams(id),
 PRIMARY KEY (id)
 );
 
+CREATE TABLE goal_status(
+id INT NOT NULL AUTO_INCREMENT,
+goal_status VARCHAR(255),
+PRIMARY KEY(id)
+);
+INSERT INTO goal_status (goal_status) VALUES ("not started");
+INSERT INTO goal_status (goal_status) VALUES ("started");
+INSERT INTO goal_status (goal_status) VALUES ("in progress");
+INSERT INTO goal_status (goal_status) VALUES ("accomplished");
+
+
 CREATE TABLE users(
 id int NOT NULL AUTO_INCREMENT,
 user_name VARCHAR(255) NOT NULL,
 password VARCHAR(255) NOT NULL,
 category_name INT NULL,
-goal VARCHAR(255),
 start_date date,
-goal_status VARCHAR(255),
+goal_status INT,
 end_date date,
 user_goal INT NULL,
 FOREIGN KEY(category_name) REFERENCES categories(id),
 FOREIGN KEY(user_goal) REFERENCES user_goal(id),
+FOREIGN KEY(goal_status) REFERENCES goal_status(id),
 PRIMARY KEY (id)
 );
