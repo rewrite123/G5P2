@@ -1,3 +1,4 @@
+const fs = require("fs");
 var db = require("../models");
 
 module.exports = function(app) {
@@ -18,6 +19,11 @@ module.exports = function(app) {
         example: dbExample
       });
     });
+  });
+  
+  app.get("/login", function(req, res) {
+    res.render("login", {});
+    //res.end(fs.readFileSync("D:\\nodeCode\\G5P2\\views\\login.html"));
   });
 
   // Render 404 page for any unmatched routes
