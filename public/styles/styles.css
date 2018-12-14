@@ -1,3 +1,27 @@
 .list-group-item {
   line-height: 2.5;
 }
+.jumbotron{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 0;
+  background-color: #fff;
+  border-style: double;
+  border-width: 7px;
+  border-color: red;
+}
+.header{
+  text-align: center;
+  font-size: 100px;
+}
+.lead{
+  text-align: center;
+  color: #000;
+  font-weight: bolder;
+}
+.stoca{
+  height: 300px;
+  width: auto;
+  margin-top: 0;
+  margin-left: 32%;
+}
