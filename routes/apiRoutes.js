@@ -1,4 +1,7 @@
 var db = require("../models");
+var passwordValidator = require('password-validator');
+
+var schema = new passwordValidator();
 
 module.exports = function(app) {
   // Get all examples
@@ -7,6 +10,14 @@ module.exports = function(app) {
       res.json(dbExamples);
     });
   });
+  
+  schema
+      .is().min(8)                                   
+      .is().max(100)                                 
+      .has().uppercase()                             
+      .has().lowercase()                             
+      .has().digits()                                
+      .has().not().spaces();  
 
   // Create a new example
   app.post("/api/examples", function(req, res) {
