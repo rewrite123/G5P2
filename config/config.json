@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": null,
+    "password": "\u0046\u0069\u0062\u0031\u0031\u0032\u0033\u0035\u0021",
     "database": "exampledb",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "\u0046\u0069\u0062\u0031\u0031\u0032\u0033\u0035\u0021",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
