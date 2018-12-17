@@ -1,0 +1,63 @@
+<div id="signup">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">       
+        <p class="info">Create a user name and login.</p>       
+          <form class="clearfix mb-4" action="POST">
+          <div class="form-group">
+            <label for="user-text">User Name</label>
+            <input type="text" id="user-text" class="form-control" aria-describedby="user-text" placeholder="User Name">
+          </div>
+          <div class="form-group">
+            <label for="password-text">Password</label>
+            <input type="password" id="password-text" class="form-control" aria-describedby="password-text" placeholder="Password">
+          </div>       
+          <div class="form-group">
+            <label for="password-text">Confirm your password</label>
+            <input type="password" id="password-text" class="form-control" aria-describedby="password-text" placeholder="Password">
+          </div> 
+          <br> 
+        <p class="info">Input a goal to accompmlish</p>           
+        <form class="clearfix mb-4" action="POST">
+            <form class="form-inline">
+                <span class="navbar-brand" id="gCategory">Category</span>
+                <select class="navbar-brand mr-sm-2" id="goalTypeSelector">
+                    <option value="fitness">Fitness</option>
+                    <option value="finance">Finance</option>
+                    <option value="education">Education</option>
+                    <option value="books">Books</option>
+                    <option value="health">Health</option>
+                    <option value="spiritual">Spiritual</option>
+                    <option value="career">Career</option>
+                    <option value="diet">Diet</option>
+                </select>
+            </form>          
+          <div class="form-group">
+            <label for="goal-description" id="gDescription">Goal Description</label>
+            <textarea class="form-control" id="goal-description" aria-describedby="goal-description" placeholder="Enter goal to accomplish"></textarea>
+          </div>
+          <p>What is the duration to accomplish the goal</p>          
+            <form class="form-inline">
+                <span class="navbar-brand" id="gDuration">Goal Duration</span>
+                <select class="navbar-brand mr-sm-2" id="goalDateSelector">
+                    <option value="fitness">1 day</option>
+                    <option value="finance">1 week</option>
+                    <option value="education">1 month</option>                    
+                </select>
+            </form> 
+            <br>             
+            <div class="form-group">
+            <label for="goal-team" id="gTeam">Team Member</label>
+            <textarea class="form-control" id="goal-team" aria-describedby="goal-team" 
+                placeholder="Enter team member to help with your goal (if known)"></textarea>
+          </div>
+            <br>
+          <button id="submit" class="btn btn-danger">Submit</button>
+        </form>        
+      </div>  {{!-- end div col-8 --}}
+    </div>  {{!-- end div row --}}
+  </div>  {{!-- end div container --}}
+</div>   {{!-- end div signup --}}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
