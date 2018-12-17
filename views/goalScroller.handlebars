@@ -1,0 +1,65 @@
+<div class="container">
+  
+  <br/>
+  
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">Navbar</a>
+    
+    <form class="form-inline">
+      <span class="navbar-brand">Category</span>
+      <select class="navbar-brand mr-sm-2" id="goalTypeSelector">
+        <option value="fitness">Fitness</option>
+        <option value="finance">Finance</option>
+        <option value="education">Education</option>
+        <option value="books">Books</option>
+        <option value="health">Health</option>
+        <option value="spiritual">Spiritual</option>
+        <option value="career">Career</option>
+        <option value="diet">Diet</option>
+        <option value="other">Other</option>
+      </select>
+    </form>
+    
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </nav>
+  
+  <hr/>
+  
+  <div class="row">
+    <div class="col-md-3">
+      <h5><a href="#">Title</a></h5>
+    </div>
+    <div class="col-md-1">
+      <h5>Category</h5>
+    </div>
+    <div class="col-md-5">
+      <h5 style="overflow: hidden;">Description</h5>
+    </div>
+    <div class="col-md-3">
+      <span>StartDate - EndDate</span>
+    </div>
+  </div>
+  
+  <hr/>
+  
+  {{#each result}}
+    <div class="row bg-light" style="padding: 5px;">
+      <div class="col-md-3">
+        <h5><a href="/goalPage/{{this.goalPageId}}">{{this.title}}</a></h5>
+      </div>
+      <div class="col-md-1">
+        <h5>{{this.category}}</h5>
+      </div>
+      <div class="col-md-5">
+        <h5 style="overflow: hidden;">{{this.description}}</h5>
+      </div>
+      <div class="col-md-3">
+        <span>{{this.startDate}} - {{this.endDate}}</span>
+      </div>
+    </div>
+  {{/each}}
+  
+</div>
