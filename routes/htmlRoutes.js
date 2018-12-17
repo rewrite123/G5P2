@@ -26,6 +26,11 @@ module.exports = function(app) {
     //res.end(fs.readFileSync("D:\\nodeCode\\G5P2\\views\\login.html"));
   });
 
+  app.get("/signup", function(req, res) {
+    res.render("signup", {});
+    //res.end(fs.readFileSync("D:\\nodeCode\\G5P2\\views\\login.html"));
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
