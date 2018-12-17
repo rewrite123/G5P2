@@ -55,3 +55,12 @@ FOREIGN KEY(user_goal) REFERENCES user_goal(id),
 FOREIGN KEY(goal_status) REFERENCES goal_status(id),
 PRIMARY KEY (id)
 );
+
+CREATE TABLE comments(
+id INT NOT NULL auto_increment,
+comment VARCHAR(255) NOT NULL,
+comment_date date,
+user_name INT,
+FOREIGN KEY (user_name) REFERENCES users(id),
+PRIMARY KEY (id)
+);
