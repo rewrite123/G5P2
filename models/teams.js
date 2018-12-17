@@ -1,23 +1,17 @@
-var Sequelize = require("sequelize");
+/* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  var teams = sequelize.define("teams", {
+  return sequelize.define('teams', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      autoIncrement: true,
-      unique: true,
       primaryKey: true
     },
     user_team: {
-      type: Sequelize.STRING(255)
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
+  }, {
+    tableName: 'teams'
   });
-  return teams;
 };
-
-/* 
-id int NOT NULL AUTO_INCREMENT,
-user_team VARCHAR(255),
-PRIMARY KEY (id)
-*/

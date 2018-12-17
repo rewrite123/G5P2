@@ -1,17 +1,17 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('categories', {
+  return sequelize.define('goal_status', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true
     },
-    category_name: {
+    goal_status: {
       type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
-    tableName: 'categories'
+    tableName: 'goal_status'
   });
 };

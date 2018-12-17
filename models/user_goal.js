@@ -1,17 +1,25 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('categories', {
+  return sequelize.define('user_goal', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true
     },
-    category_name: {
+    goal_name: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    user_team: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+      references: {
+        model: 'teams',
+        key: 'id'
+      }
     }
   }, {
-    tableName: 'categories'
+    tableName: 'user_goal'
   });
 };
