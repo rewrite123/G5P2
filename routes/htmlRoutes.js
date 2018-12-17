@@ -28,6 +28,11 @@ module.exports = function(app) {
     res.render("goalScroller", {result: testStuff} );
   });
 
+  app.get("/login", function(req, res) {
+    res.render("login", {});
+    //res.end(fs.readFileSync("D:\\nodeCode\\G5P2\\views\\login.html"));
+  });
+  
   app.get("/signup", function(req, res) {
     res.render("signup", {});
     //res.end(fs.readFileSync("D:\\nodeCode\\G5P2\\views\\login.html"));
