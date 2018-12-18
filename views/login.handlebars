@@ -4,39 +4,40 @@
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <p>Please select a goal category</p>
-        <form class="clearfix mb-4" action="POST">
+        <form class="clearfix mb-4" method="POST" action="/api/user_goal">
             <form class="form-inline">
                 <span class="navbar-brand" id="gCategory">Category</span>
-                <select class="navbar-brand mr-sm-2" id="goalTypeSelector">
-                    <option value="fitness">Fitness</option>
-                    <option value="finance">Finance</option>
-                    <option value="education">Education</option>
-                    <option value="books">Books</option>
-                    <option value="health">Health</option>
-                    <option value="spiritual">Spiritual</option>
-                    <option value="career">Career</option>
-                    <option value="diet">Diet</option>
+                <select class="navbar-brand mr-sm-2" id="goalTypeSelector" name="category">{{log results}}
+                    {{#each results}}
+                    <option value="{{this.id}}">{{this.category_name}}</option>
+                    {{/each}}
                 </select>
-            </form>          
-          <div class="form-group">
-            <label for="goal-description" id="gDescription">Goal Description</label>
-            <textarea class="form-control" id="goal-description" aria-describedby="goal-description" placeholder="Enter goal to accomplish"></textarea>
-          </div>
+            {{!-- </form>           --}}
+          {{!-- <div class="form-group"> --}}
+          <br>
+          <br>
+            <label for="goal-description" id="gDescription" >Goal Description</label>
+            <textarea class="form-control" id="goal-description" aria-describedby="goal-description" placeholder="Enter goal to accomplish" name="description"></textarea>
+          {{!-- </div> --}}
+          <br>
+                 
           <p>What is the duration to accomplish the goal</p>          
-            <form class="form-inline">
+            {{!-- <form class="form-inline"> --}}
                 <span class="navbar-brand" id="gDuration">Goal Duration</span>
-                <select class="navbar-brand mr-sm-2" id="goalDateSelector">
-                    <option value="fitness">1 day</option>
-                    <option value="finance">1 week</option>
-                    <option value="education">1 month</option>                    
+                <select class="navbar-brand mr-sm-2"  name="duration" id="goalDateSelector">
+                  {{#each results2}}
+                    <option value="{{this.id}}">{{this.goal_status}}</option>
+                   {{/each}}                    
                 </select>
-            </form> 
+            {{!-- </form>  --}}
             <br>             
-            <div class="form-group">
-            <label for="goal-team" id="gTeam">Team Member</label>
-            <textarea class="form-control" id="goal-team" aria-describedby="goal-team" 
+            {{!-- <div class="form-group"> --}}
+            <br>
+           
+            <label for="goal-team" id="gTeam" >Team Member</label>
+            <textarea name="team" class="form-control" id="goal-team" aria-describedby="goal-team" 
                 placeholder="Enter team member to help with your goal (if known)"></textarea>
-          </div>
+          {{!-- </div> --}}
             <br>
           <button id="submit" for="goal-submit" class="btn btn-danger">Submit</button>
         </form>        
@@ -46,4 +47,4 @@
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+{{!-- <script src="/js/index.js"></script> --}}
