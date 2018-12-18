@@ -5,23 +5,18 @@ module.exports = function(sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
+      autoIncrement: true,
+      unique: true,
       primaryKey: true
     },
     user_name: {
       type: DataTypes.STRING(255),
+      unique: true,
       allowNull: false
     },
     password: {
       type: DataTypes.STRING(255),
       allowNull: false
-    },
-    category_name: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true,
-      references: {
-        model: 'categories',
-        key: 'id'
-      }
     },
     start_date: {
       type: DataTypes.DATEONLY,
@@ -48,6 +43,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'users'
+    tableName: 'users',
+    timestamps: false
   });
 };

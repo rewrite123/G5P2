@@ -5,6 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
+      autoIncrement: true,
+      unique: true,
       primaryKey: true
     },
     goal_name: {
@@ -18,8 +20,17 @@ module.exports = function(sequelize, DataTypes) {
         model: 'teams',
         key: 'id'
       }
+    },
+    category_name: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+      references: {
+        model: 'categories',
+        key: 'id'
+      }
     }
   }, {
-    tableName: 'user_goal'
+    tableName: 'user_goal',
+    timestamps: false
   });
 };

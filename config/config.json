@@ -2,20 +2,9 @@
   "development": {
     "username": "root",
     "password": "\u0046\u0069\u0062\u0031\u0031\u0032\u0033\u0035\u0021",
-    "database": "exampledb",
-    "host": "localhost",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": "\u0046\u0069\u0062\u0031\u0031\u0032\u0033\u0035\u0021",
-    "database": "testdb",
+    "database": "goal_db",
     "host": "localhost",
     "dialect": "mysql",
-    "logging": false
-  },
-  "production": {
-    "use_env_variable": "JAWSDB_URL",
-    "dialect": "mysql"
+    "port": 3306
   }
 }
