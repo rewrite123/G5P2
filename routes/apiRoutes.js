@@ -48,5 +48,21 @@ module.exports = function(app) {
   });
   
   app.post("/");
+
+  app.post("/api/user_goal", function(req, res) {
+    console.log(req.body);
+    db.user_goal.create({
+      category_name: +req.body.category,      
+      goal_name: req.body.description
+      //goal_status: req.body.duration,
+      //user_team: req.body.team      
+    })
+      .then(function(dbPost) {
+        // res.json(dbPost);
+        res.redirect("/");
+      });
+  });
+
+  app.post("/");
   
 };
