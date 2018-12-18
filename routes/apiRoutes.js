@@ -14,11 +14,28 @@ module.exports = function(app) {
       res.json(dbExample);
     });
   });
-
+  
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
     db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
       res.json(dbExample);
     });
   });
+  
+  //This is an example of logging in.
+  app.post("/api/login", function(req, res){
+    //console.log("----------\nusername:" + req.body.username + " password:" + req.body.password + "\n----------");
+    db.users.findAll({
+      where: {
+        user_name: req.body.username,
+        password: req.body.password
+      }
+    }).then(function(users){
+      console.log( JSON.stringify(users) );
+      res.json( users );
+    });
+  });
+  
+  app.post("/");
+  
 };

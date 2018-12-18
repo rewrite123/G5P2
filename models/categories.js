@@ -5,6 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
+      autoIncrement: true,
+      unique: true,
       primaryKey: true
     },
     category_name: {
@@ -12,6 +14,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   }, {
-    tableName: 'categories'
+    tableName: 'categories',
+    timestamps: false
   });
 };
