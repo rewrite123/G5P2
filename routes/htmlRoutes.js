@@ -79,6 +79,40 @@ module.exports = function(app) {
     
   });
   
+  (function getgoalpageroutes() {
+    var user1 = {};
+    var goal1 = {};
+    var goal2 = {};
+    var user2 = {};
+    app.get("/user/:userid/goal/:goalid", function (req, res) {
+      db.users.findOne({ where: { id: req.params.userid } }).then(function (dbUser) {
+        user1 = dbUser.dataValues;
+        db.goals.findOne({ where: { id: req.params.goalid } }).then(function (dbGoal) {
+          goal1 = dbGoal.dataValues;
+          goal2 = dbGoal.dataValues;
+          db.users.findOne({ where: { id: goal1.conspirator } }).then(function (dbUser) {
+            user2 = dbUser.dataValues;
+            res.render("goalpage", { user1: encodeURIComponent(JSON.stringify(user1)), goal1: encodeURIComponent(JSON.stringify(goal1)), goal2: encodeURIComponent(JSON.stringify(goal2)), user2: encodeURIComponent(JSON.stringify(user2)) });
+          })
+        })
+      })
+    });
+  })();
+
+  app.get("/user/:userid", function (req, res) {
+    db.users.findOne({ where: { id: req.params.userid } }).then(function (dbUser) {
+      var username = dbUser.dataValues.username;
+      db.goals.findAll({ where: { owner: req.params.userid } }).then(function (dbGoal) {
+        console.log(dbGoal);
+        var goals = [];
+        dbGoal.forEach(element => {
+          goals.push(element.dataValues);
+        });
+        res.render("profile", { username: username, goals: goals });
+      })
+    })
+  });
+  
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
