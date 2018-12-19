@@ -2,48 +2,55 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <p>Please select a goal category</p>
-        <form class="clearfix mb-4" action="POST">
-            <form class="form-inline">
-                <span class="navbar-brand" id="gCategory">Category</span>
-                <select class="navbar-brand mr-sm-2" id="goalTypeSelector">
-                    <option value="fitness">Fitness</option>
-                    <option value="finance">Finance</option>
-                    <option value="education">Education</option>
-                    <option value="books">Books</option>
-                    <option value="health">Health</option>
-                    <option value="spiritual">Spiritual</option>
-                    <option value="career">Career</option>
-                    <option value="diet">Diet</option>
-                </select>
-            </form>          
-          <div class="form-group">
-            <label for="goal-description" id="gDescription">Goal Description</label>
-            <textarea class="form-control" id="goal-description" aria-describedby="goal-description" placeholder="Enter goal to accomplish"></textarea>
-          </div>
-          <p>What is the duration to accomplish the goal</p>          
-            <form class="form-inline">
-                <span class="navbar-brand" id="gDuration">Goal Duration</span>
-                <select class="navbar-brand mr-sm-2" id="goalDateSelector">
-                    <option value="fitness">1 day</option>
-                    <option value="finance">1 week</option>
-                    <option value="education">1 month</option>                    
-                </select>
-            </form> 
-            <br>             
-            <div class="form-group">
-            <label for="goal-team" id="gTeam">Team Member</label>
-            <textarea class="form-control" id="goal-team" aria-describedby="goal-team" 
-                placeholder="Enter team member to help with your goal (if known)"></textarea>
-          </div>
-            <br>
-          <button id="submit" for="goal-submit" class="btn btn-danger">Submit</button>
-        </form>        
+        <div class="clearfix mb-4">
+          <p>Please enter a title for your goal</p>
+          <input id="title" type="text" maxlength="25"/>
+          
+          <p>Please enter the category you feel best encompasses your goal</p>
+          <input id="category" type="text" maxlength="25"/>
+          
+          <br/>
+          <label for="goal-description" id="gDescription" >Goal Description</label>
+          <textarea class="form-control" id="descript" aria-describedby="goal-description" placeholder="Enter goal to accomplish" name="description"></textarea>
+          <br/>
+          
+          <p>When do you plan on starting and completing your goal?</p>
+          <label for="startDate">Starting date</label>
+          <br/>
+          <input id="startDate" type="date" name="startDate"/>
+          <br/>
+          <label for="completionDate">Completion date</label>
+          <br/>
+          <input id="completionDate" type="date" name="completionDate"/>
+          <br/>
+          
+          <button id="submit" class="btn btn-danger" onclick="submitGoal()">Submit goal</button>
+          
+        </div>        
       </div>
     </div>
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script type="application/javascript">
+  function submitGoal(){
+    var data = {};
+    
+    data.title = document.getElementById("title").value;
+    data.category = document.getElementById("category").value;
+    data.descript = document.getElementById("descript").value;
+    data.startDate = document.getElementById("startDate").value;
+    data.completionDate = document.getElementById("completionDate").value;
+    
+    $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/create-goal",
+      data: JSON.stringify(data)
+    }).then(function(){
+      location.href = "/goal-scroller/1";
+    });
+  }
+</script>
