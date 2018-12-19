@@ -9,6 +9,7 @@
     <hr class="my-4"/>
     <p>Linked to: <a href="#">This person's goal</a></p>
     <hr class="my-4"/>
+    <p id="goalId" style="font-size: 10px; padding: 0px; margin: 0px;">id: {{goal.id}}</p>
   </div>
   
   <div>
@@ -19,21 +20,25 @@
   
   <div class="jumbotron">
     <h1 class="display-4">Meet the owner</h1>
-    <h3><a href="#">{{owner.username}}</a></h3>
+    <h1><a href="#">{{owner.username}}</a></h1>
     <hr class="my-4"/>
   </div>
   
   {{#if conspirator}}
     <div class="jumbotron">
       <h1 class="display-4">Meet the competition!</h1>
-      <h3><a href="#">{{conspirator.username}}</a></h3>
+      <h1><a href="#">{{conspirator.username}}</a></h1>
       <hr class="my-4"/>
     </div>
   {{else}}
     <div>
-      <h4>This person does not currently have anyone to work with.</h4>
-      <p>Be the person to <a href="#">help them</a> complete their goal!</p>
+      <h4>This person does not currently have anyone to work with =(</h4>
+      <p>Be the person to help them complete their goal!</p>
     </div>
   {{/if}}
+  
+  <br/>
+  <br/>
+  <br/>
   
 </div>
