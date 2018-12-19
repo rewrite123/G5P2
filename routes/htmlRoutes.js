@@ -79,25 +79,24 @@ module.exports = function(app) {
     
   });
   
-  (function getgoalpageroutes() {
+  app.get("/user/:userid/goal/:goalid", function (req, res) {
     var user1 = {};
     var goal1 = {};
     var goal2 = {};
     var user2 = {};
-    app.get("/user/:userid/goal/:goalid", function (req, res) {
-      db.users.findOne({ where: { id: req.params.userid } }).then(function (dbUser) {
-        user1 = dbUser.dataValues;
-        db.goals.findOne({ where: { id: req.params.goalid } }).then(function (dbGoal) {
-          goal1 = dbGoal.dataValues;
-          goal2 = dbGoal.dataValues;
-          db.users.findOne({ where: { id: goal1.conspirator } }).then(function (dbUser) {
-            user2 = dbUser.dataValues;
-            res.render("goalpage", { user1: encodeURIComponent(JSON.stringify(user1)), goal1: encodeURIComponent(JSON.stringify(goal1)), goal2: encodeURIComponent(JSON.stringify(goal2)), user2: encodeURIComponent(JSON.stringify(user2)) });
-          })
+    db.users.findOne({ where: { id: req.params.userid } }).then(function (dbUser) {
+      user1 = dbUser.dataValues;
+      console.log(user1);
+      db.goals.findOne({ where: { id: req.params.goalid } }).then(function (dbGoal) {
+        goal1 = dbGoal.dataValues;
+        goal2 = dbGoal.dataValues;
+        db.users.findOne({ where: { id: goal1.conspirator } }).then(function (dbUser) {
+          user2 = (dbUser != null)? dbUser.dataValues : null;
+          res.render("goalpage", { user1: user1, goal1: goal1, goal2: goal2, user2: user2 });
         })
       })
-    });
-  })();
+    })
+  });
 
   app.get("/user/:userid", function (req, res) {
     db.users.findOne({ where: { id: req.params.userid } }).then(function (dbUser) {
