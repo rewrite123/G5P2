@@ -20,7 +20,8 @@ create table goals(
     last_completed date,
     completed_instances int default 0,
     owner int not null, foreign key(owner) references users(id),
-    conspirator int default null, foreign key(conspirator) references users(id)
+    conspirator int default null, foreign key(conspirator) references users(id),
+    partner int default null, foreign key(partner) references goals(id)
 );
 
 create view links as (

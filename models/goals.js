@@ -33,6 +33,15 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATEONLY,
       allowNull: false
     },
+    last_completed: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    completed_instances: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+      defaultValue: '0'
+    },
     owner: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -46,6 +55,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       references: {
         model: 'users',
+        key: 'id'
+      }
+    },
+    partner: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+      references: {
+        model: 'goals',
         key: 'id'
       }
     }
