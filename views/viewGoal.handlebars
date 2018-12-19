@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">{{goal.title}}</h1>
+    <p>Category: {{goal.category}}</p>
+    <hr class="my-4"/>
+    <p>Dates: {{goal.start_date}} TO {{goal.end_date}}</p>
+    <hr class="my-4"/>
+    <p>Status: {{readableStatus}}</p>
+    <hr class="my-4"/>
+    <p>Linked to: <a href="#">This person's goal</a></p>
+    <hr class="my-4"/>
+  </div>
+  
+  <div>
+    <h6>{{goal.descript}}</h6>
+  </div>
+  
+  <hr/>
+  
+  <div class="jumbotron">
+    <h1 class="display-4">Meet the owner</h1>
+    <h3><a href="#">{{owner.username}}</a></h3>
+    <hr class="my-4"/>
+  </div>
+  
+  {{#if conspirator}}
+    <div class="jumbotron">
+      <h1 class="display-4">Meet the competition!</h1>
+      <h3><a href="#">{{conspirator.username}}</a></h3>
+      <hr class="my-4"/>
+    </div>
+  {{else}}
+    <div>
+      <h4>This person does not currently have anyone to work with.</h4>
+      <p>Be the person to <a href="#">help them</a> complete their goal!</p>
+    </div>
+  {{/if}}
+  
+</div>
