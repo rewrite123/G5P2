@@ -5,42 +5,16 @@ module.exports = function(sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      autoIncrement: true,
-      unique: true,
       primaryKey: true
     },
-    user_name: {
+    username: {
       type: DataTypes.STRING(255),
-      unique: true,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     password: {
       type: DataTypes.STRING(255),
       allowNull: false
-    },
-    start_date: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
-    },
-    goal_status: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true,
-      references: {
-        model: 'goal_status',
-        key: 'id'
-      }
-    },
-    end_date: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
-    },
-    user_goal: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true,
-      references: {
-        model: 'user_goal',
-        key: 'id'
-      }
     }
   }, {
     tableName: 'users',

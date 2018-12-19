@@ -18,11 +18,26 @@ module.exports = function(app) {
     });
   });
   
-  app.get("/goal-scroller", function(req, res){
-    var testStuff = [];
-    testStuff.push({title: "example title", category: "Fitness", description: "Somthing Something I mispelled lots of wurds. Somthing Something I mispelled lots of wurds. Somthing Something I mispelled lots of wurds. Somthing Something I mispelled lots of wurds. Somthing Something I mispelled lots of wurds. Somthing Something I mispelled lots of wurds. Somthing Something I mispelled lots of wurds. Somthing Something I mispelled lots of wurds. Somthing Something I mispelled lots of wurds. Somthing Something I mispelled lots of wurds. Somthing Something I mispelled lots of wurds. Somthing Something I mispelled lots of wurds. Somthing Something I mispelled lots of wurds.", startDate: "9/11/1998", endDate: "9/11/2018", goalPageId: 2});
-    testStuff.push({title: "example title2", category: "Diet", description: "Somthing Something I mispelled lots of wurds.", startDate: "9/11/1998", endDate: "9/11/2018", goalPageId: 1});
-    res.render("goalScroller", {result: testStuff} );
+  app.get("/goal-scroller/:searchee/:page", function(req, res){
+    db.goals.findAll({
+      where: {
+        category: req.params.searchee
+      },
+      limit: 25,
+      offset: 25*(req.params.page-1)
+    }).then(function(results){
+      res.render("goalScroller", {goals: results} );
+    });
+    
+  });
+  
+  app.get("/goal-scroller/:page", function(req, res){
+    db.goals.findAll({
+      limit: 25,
+      offset: 25*(req.params.page-1)
+    }).then(function(results){
+      res.render("goalScroller", {goals: results} );
+    });
   });
 
   app.get("/login", function(req, res) {

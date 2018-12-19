@@ -1,66 +1,30 @@
-DROP DATABASE IF EXISTS goal_db;
-CREATE DATABASE goal_db;
-USE goal_db;
+drop database if exists goalsdb;
+create database goalsdb;
 
-CREATE TABLE teams(
-id int NOT NULL AUTO_INCREMENT,
-user_team VARCHAR(255),
-PRIMARY KEY (id)
+use goalsdb;
+
+create table users (
+	id int auto_increment unique primary key not null,
+    username varchar(255) unique not null,
+    password varchar(255) not null
 );
 
-CREATE TABLE categories(
-id int NOT NULL AUTO_INCREMENT,
-category_name VARCHAR(255),
-PRIMARY KEY (id)
-);
-INSERT INTO categories (category_name) VALUES ("fitness");
-INSERT INTO categories (category_name) VALUES ("finance");
-INSERT INTO categories (category_name) VALUES ("education");
-INSERT INTO categories (category_name) VALUES ("books");
-INSERT INTO categories (category_name) VALUES ("health");
-INSERT INTO categories (category_name) VALUES ("spiritual");
-INSERT INTO categories (category_name) VALUES ("career");
-INSERT INTO categories (category_name) VALUES ("diet");
-
-CREATE TABLE user_goal(
-id int NOT NULL AUTO_INCREMENT,
-goal_name VARCHAR(255),
-user_team INT NULL,
-category_name INT NULL,
-FOREIGN KEY(user_team) REFERENCES teams(id),
-FOREIGN KEY(category_name) REFERENCES categories(id),
-PRIMARY KEY (id)
+create table goals(
+	id int auto_increment unique primary key not null,
+    title varchar(25) not null,
+    category varchar(25) not null default "personal",
+    descript varchar(255) not null,
+    completion int not null default 0,
+    start_date date not null,
+    end_date date not null,
+    last_completed date,
+    completed_instances int default 0,
+    owner int not null, foreign key(owner) references users(id),
+    conspirator int default null, foreign key(conspirator) references users(id)
 );
 
-CREATE TABLE goal_status(
-id INT NOT NULL AUTO_INCREMENT,
-goal_status VARCHAR(255),
-PRIMARY KEY(id)
-);
-INSERT INTO goal_status (goal_status) VALUES ("not started");
-INSERT INTO goal_status (goal_status) VALUES ("started");
-INSERT INTO goal_status (goal_status) VALUES ("in progress");
-INSERT INTO goal_status (goal_status) VALUES ("accomplished");
-
-
-CREATE TABLE users(
-id int NOT NULL AUTO_INCREMENT,
-user_name VARCHAR(255) NOT NULL unique,
-password VARCHAR(255) NOT NULL,
-start_date date,
-goal_status INT,
-end_date date,
-user_goal INT NULL,
-FOREIGN KEY(user_goal) REFERENCES user_goal(id),
-FOREIGN KEY(goal_status) REFERENCES goal_status(id),
-PRIMARY KEY (id)
-);
-
-CREATE TABLE comments(
-id INT NOT NULL auto_increment,
-comment VARCHAR(255) NOT NULL,
-comment_date date,
-user_name INT,
-FOREIGN KEY (user_name) REFERENCES users(id),
-PRIMARY KEY (id)
+create view links as (
+	select goals.owner as goal_owner, goals.conspirator as goal_conspirator, goals.id as goal_id
+    from goals, users
+	where goals.owner = users.id
 );

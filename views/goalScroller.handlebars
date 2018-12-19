@@ -3,27 +3,12 @@
   <br/>
   
   <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand">Navbar</a>
+    <a class="navbar-brand">Search users with goals like yours here</a>
     
-    <form class="form-inline">
-      <span class="navbar-brand">Category</span>
-      <select class="navbar-brand mr-sm-2" id="goalTypeSelector">
-        <option value="fitness">Fitness</option>
-        <option value="finance">Finance</option>
-        <option value="education">Education</option>
-        <option value="books">Books</option>
-        <option value="health">Health</option>
-        <option value="spiritual">Spiritual</option>
-        <option value="career">Career</option>
-        <option value="diet">Diet</option>
-        <option value="other">Other</option>
-      </select>
-    </form>
-    
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="form-inline">
+      <input id="searchee" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-danger my-2 my-sm-0" onclick="searchFor()" >Search</button>
+    </div>
   </nav>
   
   <hr/>
@@ -39,27 +24,44 @@
       <h5 style="overflow: hidden;">Description</h5>
     </div>
     <div class="col-md-3">
-      <span>StartDate - EndDate</span>
+      <span>StartDate TO EndDate</span>
     </div>
   </div>
   
   <hr/>
   
-  {{#each result}}
+  {{#each goals}}
     <div class="row bg-light" style="padding: 5px;">
-      <div class="col-md-3">
+      <div class="col-md-2">
         <h5><a href="/goalPage/{{this.goalPageId}}">{{this.title}}</a></h5>
       </div>
-      <div class="col-md-1">
+      <div class="col-md-3">
         <h5>{{this.category}}</h5>
       </div>
-      <div class="col-md-5">
-        <h5 style="overflow: hidden;">{{this.description}}</h5>
+      <div class="col-md-4">
+        <h5 style="overflow: hidden;">{{this.descript }}</h5>
       </div>
       <div class="col-md-3">
-        <span>{{this.startDate}} - {{this.endDate}}</span>
+        <span>{{this.start_date}} TO {{this.end_date}}</span>
       </div>
     </div>
   {{/each}}
   
+  <hr/>
+  
+</div>
+
+<div class="container">
+  <button class="btn btn-outline-danger my-2 my-sm-0" onclick="nextPage()">Next Page</button>
+
+  <script type="application/javascript">
+    function nextPage(){
+      var nextPage = parseInt(location.href.substr(location.href.lastIndexOf('/') + 1))+1;
+      location.href = location.href.substr(0, location.href.lastIndexOf('/')) + "/" +  nextPage;
+    }
+    
+    function searchFor(){
+      location.href = ("/goal-scroller/" + document.getElementById("searchee").value + "/1");
+    }
+  </script>
 </div>

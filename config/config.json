@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "\u0046\u0069\u0062\u0031\u0031\u0032\u0033\u0035\u0021",
-    "database": "goal_db",
+    "database": "goalsdb",
     "host": "localhost",
     "dialect": "mysql",
     "port": 3306
