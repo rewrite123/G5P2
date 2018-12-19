@@ -1,0 +1,28 @@
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <h1>{{username}},</h1>
+        <h2>accomplish your goals!</h2>
+        <br>
+        {{#each goals}}
+        <h2><a href="/goal/{{id}}">{{descript}}</a></h2>
+        <h4> goal end date: {{end_date}}</h4>
+        <h4 id= "status"> {{completion}}</h4>
+        {{/each}}       
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+var x = document.getElementById("status").innerText;
+if (x == 0){
+  document.getElementById("status").innerText = "status: not started";
+} else if (x == 1) {
+  document.getElementById("status").innerText = "status: in progress";
+} else if (x == 1) {
+  document.getElementById("status").innerText = "status: completed";
+}
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
